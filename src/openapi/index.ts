@@ -30,7 +30,7 @@ export class OpenApiValidator {
         if (!schema) {
             if (this.strict) {
                 throw new Error(
-                    `[apix/openapi] No schema found for ${method.toUpperCase()} ${requestPath} → ${statusCode}. ` +
+                    `[api-sentinel/openapi] No schema found for ${method.toUpperCase()} ${requestPath} → ${statusCode}. ` +
                     `Set strict: false to skip validation when schema is missing.`
                 );
             }

@@ -5,10 +5,10 @@
         "noEmit": true,
         "baseUrl": ".",
         "paths": {
-            "@apix/cli": [
+            "api-sentinel": [
                 "./dist/index.js"
             ],
-            "@apix/cli/*": [
+            "api-sentinel/*": [
                 "./dist/*"
             ]
         }

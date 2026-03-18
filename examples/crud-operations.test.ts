@@ -6,8 +6,8 @@ import { test, expect } from '../src/dsl/index.js';
 
 test('Example: Create a new resource', async ({ api }) => {
     const newPost = {
-        title: 'Introduction to apix',
-        body: 'apix is a TypeScript-first API testing framework',
+        title: 'Introduction to api-sentinel',
+        body: 'api-sentinel is a TypeScript-first API testing framework',
         userId: 1
     };
 

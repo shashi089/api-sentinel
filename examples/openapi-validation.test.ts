@@ -7,9 +7,9 @@
  * To run:
  *   node dist/cli/index.js test examples/openapi-validation.test.ts
  *
- * Note: The openapi config must be set in apix.config.ts (or passed via CLI).
+ * Note: The openapi config must be set in api-sentinel.config.ts (or passed via CLI).
  * For this example we import the suite directly — the runner picks up config
- * from apix.config.ts which should include:
+ * from api-sentinel.config.ts which should include:
  *
  *   openapi: {
  *     specPath: './examples/openapi/pokemon.json',

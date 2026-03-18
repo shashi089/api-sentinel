@@ -1,4 +1,4 @@
-import { test, expect } from "@apix/cli"
+import { test, expect } from "api-sentinel"
 
 test("POST /auth/login", async ({ request }) => {
   const response = await request.post("/auth/login")

@@ -10,7 +10,7 @@ import { pathToFileURL } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const OUT_DIR = './apix-reports';
+const OUT_DIR = './api-sentinel-reports';
 
 const config = {
     reporters: { outDir: OUT_DIR, json: true, html: true },

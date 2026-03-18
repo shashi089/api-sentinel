@@ -1,11 +1,11 @@
 {
-    "name": "@apix/cli",
+    "name": "api-sentinel",
     "version": "1.0.0",
     "description": "TypeScript-first Git-native API testing CLI with contract awareness",
     "type": "module",
     "main": "./dist/index.js",
     "bin": {
-        "apix": "./dist/cli/index.js"
+        "api-sentinel": "./dist/cli/index.js"
     },
     "engines": {
         "node": ">=18.0.0"
@@ -29,7 +29,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/shashi089/apix-cli.git"
+        "url": "https://github.com/shashi089/api-sentinel.git"
     },
     "author": "",
     "license": "MIT",

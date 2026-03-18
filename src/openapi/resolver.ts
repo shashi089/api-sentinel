@@ -6,7 +6,7 @@
  */
 export function resolveRef(spec: Record<string, any>, ref: string): Record<string, any> {
     if (!ref.startsWith('#/')) {
-        throw new Error(`[apix/openapi] Only local $ref is supported. Got: "${ref}"`);
+        throw new Error(`[api-sentinel/openapi] Only local $ref is supported. Got: "${ref}"`);
     }
 
     const parts = ref.slice(2).split('/');
@@ -16,7 +16,7 @@ export function resolveRef(spec: Record<string, any>, ref: string): Record<strin
         // JSON Pointer escaping: ~1 = '/', ~0 = '~'
         const key = part.replace(/~1/g, '/').replace(/~0/g, '~');
         if (current == null || typeof current !== 'object' || !(key in current)) {
-            throw new Error(`[apix/openapi] Could not resolve $ref: "${ref}" (failed at segment "${key}")`);
+            throw new Error(`[api-sentinel/openapi] Could not resolve $ref: "${ref}" (failed at segment "${key}")`);
         }
         current = current[key];
     }

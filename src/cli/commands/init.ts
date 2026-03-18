@@ -3,11 +3,11 @@ import path from 'node:path';
 import { logger } from '../../utils/logger.js';
 
 export async function initHandler() {
-    const configPath = path.join(process.cwd(), 'apix.config.ts');
+    const configPath = path.join(process.cwd(), 'api-sentinel.config.ts');
     const envPath = path.join(process.cwd(), '.env.example');
 
     if (fs.existsSync(configPath)) {
-        logger.warn('apix.config.ts already exists.');
+        logger.warn('api-sentinel.config.ts already exists.');
         return;
     }
 
@@ -25,7 +25,7 @@ const config: Config = {
 export default config;
 `;
 
-    const envContent = `# apix Environment Configuration
+    const envContent = `# api-sentinel Environment Configuration
 # Copy this file to .env and update with your values
 
 # API Configuration
@@ -60,7 +60,7 @@ test('Sample: POST request example', async ({ api }) => {
 
     try {
         fs.writeFileSync(configPath, configContent);
-        logger.success('Created apix.config.ts');
+        logger.success('Created api-sentinel.config.ts');
 
         fs.writeFileSync(envPath, envContent);
         logger.success('Created .env.example');
@@ -75,11 +75,11 @@ test('Sample: POST request example', async ({ api }) => {
         fs.writeFileSync(sampleTestPath, sampleTestContent);
         logger.success('Created examples/sample.test.ts');
 
-        logger.info('\n✨ apix project initialized successfully!\n');
+        logger.info('\n✨ api-sentinel project initialized successfully!\n');
         logger.info('Next steps:');
         logger.info('1. Copy .env.example to .env and update with your credentials');
-        logger.info('2. Update apix.config.ts with your API settings');
-        logger.info('3. Run your first test: apix run examples/sample.test.ts');
+        logger.info('2. Update api-sentinel.config.ts with your API settings');
+        logger.info('3. Run your first test: api-sentinel run examples/sample.test.ts');
     } catch (error: any) {
         logger.error('Failed to initialize project', error);
     }

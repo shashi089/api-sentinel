@@ -1,6 +1,6 @@
-# Installing apix Directly from GitHub
+# Installing api-sentinel Directly from GitHub
 
-> **No npm account needed.** Use this guide to install apix directly into your project from the GitHub repository — ideal for evaluating the framework before it is published to npm.
+> **No npm account needed.** Use this guide to install api-sentinel directly into your project from the GitHub repository — ideal for evaluating the framework before it is published to npm.
 
 ---
 
@@ -13,36 +13,36 @@
 
 ## Option 1 — Install from GitHub URL (recommended)
 
-Add apix directly to your project's `package.json` using npm's built-in GitHub install:
+Add api-sentinel directly to your project's `package.json` using npm's built-in GitHub install:
 
 ```bash
-npm install github:shashi089/apix-cli
+npm install github:shashi089/api-sentinel
 ```
 
 Or pin to a specific commit or branch for stability:
 
 ```bash
 # Specific branch
-npm install github:shashi089/apix-cli#main
+npm install github:shashi089/api-sentinel#main
 
 # Specific commit SHA
-npm install github:shashi089/apix-cli#a1b2c3d
+npm install github:shashi089/api-sentinel#a1b2c3d
 ```
 
 npm will clone the repo, run `npm run build` (the `prepare` script), and install it as a local dependency — exactly like a published package.
 
-> Replace `shashi089/apix-cli` with the actual GitHub username and repo name once the repo is public.
+> Replace `shashi089/api-sentinel` with the actual GitHub username and repo name once the repo is public.
 
 ---
 
 ## Option 2 — Install from a local clone
 
-If you want to modify apix alongside your project, clone it locally first:
+If you want to modify api-sentinel alongside your project, clone it locally first:
 
 ```bash
 # 1. Clone the repo somewhere on your machine
-git clone https://github.com/shashi089/apix-cli.git
-cd apix-cli
+git clone https://github.com/shashi089/api-sentinel.git
+cd api-sentinel
 npm install
 npm run build
 ```
@@ -50,7 +50,7 @@ npm run build
 Then in your project:
 
 ```bash
-npm install file:../apix-cli
+npm install file:../api-sentinel
 ```
 
 Or add it manually to `package.json`:
@@ -58,28 +58,28 @@ Or add it manually to `package.json`:
 ```json
 {
   "dependencies": {
-    "@apix/cli": "file:../apix-cli"
+    "api-sentinel": "file:../api-sentinel"
   }
 }
 ```
 
-Run `npm install` to link it. Any time you change apix, rebuild it (`npm run build` inside the apix-cli folder) and reinstall in your project.
+Run `npm install` to link it. Any time you change api-sentinel, rebuild it (`npm run build` inside the api-sentinel folder) and reinstall in your project.
 
 ---
 
 ## Step-by-step: Setting up your first test
 
-### 1. Install apix
+### 1. Install api-sentinel
 
 ```bash
-npm install github:shashi089/apix-cli
+npm install github:shashi089/api-sentinel
 ```
 
 ### 2. Create a config file
 
 ```ts
-// apix.config.ts
-import type { Config } from '@apix/cli';
+// api-sentinel.config.ts
+import type { Config } from 'api-sentinel';
 
 const config: Config = {
   baseUrl: 'https://your-api.com',
@@ -96,7 +96,7 @@ export default config;
 
 ```ts
 // tests/users.test.ts
-import { test } from '@apix/cli/dsl';
+import { test } from 'api-sentinel/dsl';
 
 test('GET /users — returns 200', async (ctx) => {
   const res = await ctx.request({
@@ -125,7 +125,7 @@ test('POST /users — creates a user', async (ctx) => {
 ```json
 {
   "scripts": {
-    "test:api": "apix run \"tests/**/*.test.ts\""
+    "test:api": "api-sentinel run \"tests/**/*.test.ts\""
   }
 }
 ```
@@ -139,30 +139,30 @@ npm run test:api
 Or directly:
 
 ```bash
-npx apix run "tests/**/*.test.ts"
+npx api-sentinel run "tests/**/*.test.ts"
 ```
 
 ---
 
 ## Environment variables
 
-Create a `.env` file in your project root — apix loads it automatically:
+Create a `.env` file in your project root — api-sentinel loads it automatically:
 
 ```env
 API_TOKEN=your-secret-token
 BASE_URL=https://staging.your-api.com
 ```
 
-Reference them in `apix.config.ts` via `process.env.API_TOKEN`.
+Reference them in `api-sentinel.config.ts` via `process.env.API_TOKEN`.
 
 ---
 
-## Updating apix
+## Updating api-sentinel
 
 ### If installed via GitHub URL
 
 ```bash
-npm install github:shashi089/apix-cli
+npm install github:shashi089/api-sentinel
 ```
 
 Re-running the install command always fetches the latest commit on the default branch.
@@ -170,7 +170,7 @@ Re-running the install command always fetches the latest commit on the default b
 ### If installed via local clone
 
 ```bash
-# Inside the apix-cli folder
+# Inside the api-sentinel folder
 git pull
 npm run build
 
@@ -182,9 +182,9 @@ npm install
 
 ## Troubleshooting
 
-**`apix: command not found`**
+**`api-sentinel: command not found`**
 
-The `bin` entry requires the package to be built. If you installed from a local clone, make sure you ran `npm run build` inside the apix directory first.
+The `bin` entry requires the package to be built. If you installed from a local clone, make sure you ran `npm run build` inside the api-sentinel directory first.
 
 **TypeScript errors on import**
 
@@ -205,7 +205,7 @@ Make sure your `tsconfig.json` includes:
 Pass the glob pattern explicitly:
 
 ```bash
-npx apix run "tests/**/*.test.ts"
+npx api-sentinel run "tests/**/*.test.ts"
 ```
 
 Glob patterns must be quoted to prevent shell expansion.

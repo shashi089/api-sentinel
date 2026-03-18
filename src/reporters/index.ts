@@ -3,7 +3,7 @@ import { ReportSummary } from './types.js';
 import { writeJsonReport } from './json.js';
 import { writeHtmlReport } from './html.js';
 
-const DEFAULT_OUT_DIR = './apix-reports';
+const DEFAULT_OUT_DIR = './api-sentinel-reports';
 
 /**
  * Runs all enabled reporters after a test run completes.

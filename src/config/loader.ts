@@ -15,10 +15,10 @@ export class ConfigLoader {
 
         // Try environment-specific config first, then fallback to default
         const configPaths = [
-            path.join(process.cwd(), `apix.config.${env}.ts`),
-            path.join(process.cwd(), `apix.config.${env}.js`),
-            path.join(process.cwd(), 'apix.config.ts'),
-            path.join(process.cwd(), 'apix.config.js'),
+            path.join(process.cwd(), `api-sentinel.config.${env}.ts`),
+            path.join(process.cwd(), `api-sentinel.config.${env}.js`),
+            path.join(process.cwd(), 'api-sentinel.config.ts'),
+            path.join(process.cwd(), 'api-sentinel.config.js'),
         ];
 
         for (const configPath of configPaths) {

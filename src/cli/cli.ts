@@ -14,13 +14,13 @@ const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 export const program = new Command();
 
 program
-    .name('apix')
-    .description(pc.cyan('apix: TypeScript-first CLI API testing framework'))
+    .name('api-sentinel')
+    .description(pc.cyan('api-sentinel: TypeScript-first CLI API testing framework'))
     .version(pkg.version, '-v, --version', pc.yellow('Show the current version'));
 
 program
     .command('init')
-    .description('Initialize a new apix project')
+    .description('Initialize a new api-sentinel project')
     .action(async () => {
         await initHandler();
     });
