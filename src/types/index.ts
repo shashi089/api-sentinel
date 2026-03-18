@@ -31,7 +31,7 @@ export interface OpenApiConfig {
 }
 
 export interface ReporterConfig {
-    outDir?: string;   // default: './api-sentinel-reports'
+    outDir?: string;   // default: './reqprobe-reports'
     json?: boolean;    // write report.json
     html?: boolean;    // write report.html
 }

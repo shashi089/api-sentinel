@@ -34,7 +34,7 @@ export function validateResponse(
             .join('\n');
 
         throw new Error(
-            `[api-sentinel/openapi] Response body failed schema validation:\n${formatted}`
+            `[reqprobe/openapi] Response body failed schema validation:\n${formatted}`
         );
     }
 }

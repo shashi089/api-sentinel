@@ -1,10 +1,10 @@
 <div align="center">
 
-# api-sentinel
+# reqprobe
 
 **TypeScript-first API testing for teams that ship.**
 
-[![npm](https://img.shields.io/npm/v/api-sentinel?color=0ea5e9&label=npm)](https://www.npmjs.com/package/api-sentinel)
+[![npm](https://img.shields.io/npm/v/reqprobe?color=0ea5e9&label=npm)](https://www.npmjs.com/package/reqprobe)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6)](https://www.typescriptlang.org)
@@ -15,22 +15,22 @@ Write API tests in TypeScript. Run them from the CLI. Validate against your Open
 
 ---
 
-## What is api-sentinel?
+## What is reqprobe?
 
-Traditional GUI-based tools like Postman or Insomnia are built for manual exploration. `api-sentinel` is a **code-first API testing framework** built for automation. Tests live in your repo as `.ts` files — versioned, diff-able, and reviewable like any other code.
+Traditional GUI-based tools like Postman or Insomnia are built for manual exploration. `reqprobe` is a **code-first API testing framework** built for automation. Tests live in your repo as `.ts` files — versioned, diff-able, and reviewable like any other code.
 
 ### Why not GUI-based tools?
 
-| | GUI-based Tools | api-sentinel |
+| | GUI-based Tools | reqprobe |
 |---|---|---|
 | **Lives in Git** | ❌ JSON exports, not code | ✅ `.ts` files, full diff history |
 | **TypeScript** | ❌ Proprietary scripting | ✅ Native, typed, IDE-complete |
-| **CI/CD** | ⚠️ Requires external runners | ✅ `npx api-sentinel run` — done |
+| **CI/CD** | ⚠️ Requires external runners | ✅ `npx reqprobe run` — done |
 | **OpenAPI validation** | ❌ Manual schema checks | ✅ Automatic per-request |
 | **Code review** | ❌ Proprietary state, no diffs | ✅ PRs, blame, history |
 | **Cost** | 💸 Subscriptions required | ✅ Free, open-source |
 
-If your tests live in a GUI, they don't belong to your team — they belong to a vendor. **api-sentinel puts your tests back in your codebase.**
+If your tests live in a GUI, they don't belong to your team — they belong to a vendor. **reqprobe puts your tests back in your codebase.**
 
 ---
 
@@ -44,7 +44,7 @@ If your tests live in a GUI, they don't belong to your team — they belong to a
 | 🌱 | **Git-Native** | Full diff history, PR reviews, blame — your tests are real code. |
 | ⚙️ | **CI/CD Ready** | Exits with code `1` on failure. Works with GitHub Actions, GitLab CI, and any CI runner out of the box. |
 | 🏗️ | **Monorepo Support** | Per-package config. Each service owns its own tests. |
-| 🔜 | **Watch Mode** | *(Coming soon)* `api-sentinel run --watch` — re-run tests on file save. |
+| 🔜 | **Watch Mode** | *(Coming soon)* `reqprobe run --watch` — re-run tests on file save. |
 | 🔜 | **Scaffold Generator** | *(Coming soon)* Generate typed test stubs from your OpenAPI spec. |
 | 🔜 | **beforeAll / afterAll hooks** | *(Coming in v0.2)* Shared setup and teardown across tests. |
 
@@ -52,19 +52,19 @@ If your tests live in a GUI, they don't belong to your team — they belong to a
 
 ## Quick Start
 
-> **api-sentinel is not yet published to npm.** Install it directly from GitHub — see the full guide in **[INSTALL_FROM_GITHUB.md](./INSTALL_FROM_GITHUB.md)**.
+> **reqprobe is not yet published to npm.** Install it directly from GitHub — see the full guide in **[INSTALL_FROM_GITHUB.md](./INSTALL_FROM_GITHUB.md)**.
 
 ### 1. Install into your project
 
 ```bash
-npm install github:shashi089/api-sentinel
+npm install github:shashi089/reqprobe
 ```
 
 ### 2. Create a config file
 
 ```ts
-// api-sentinel.config.ts
-import type { Config } from 'api-sentinel';
+// reqprobe.config.ts
+import type { Config } from 'reqprobe';
 
 const config: Config = {
   baseUrl: 'https://your-api.com',
@@ -81,7 +81,7 @@ export default config;
 
 ```ts
 // tests/users.test.ts
-import { test } from 'api-sentinel/dsl';
+import { test } from 'reqprobe/dsl';
 
 test('GET /users — returns 200', async (ctx) => {
   const res = await ctx.request({ url: '/users', method: 'GET' });
@@ -93,7 +93,7 @@ test('GET /users — returns 200', async (ctx) => {
 ### 4. Run it
 
 ```bash
-npx api-sentinel run "tests/**/*.test.ts"
+npx reqprobe run "tests/**/*.test.ts"
 ```
 
 Output:
@@ -118,11 +118,11 @@ Exit code `1` on failure — CI-ready out of the box.
 
 ## Try It Against a Real API
 
-Want to see api-sentinel working immediately? Run this against the free [PokéAPI](https://pokeapi.co) — no auth required.
+Want to see reqprobe working immediately? Run this against the free [PokéAPI](https://pokeapi.co) — no auth required.
 
 ```ts
 // tests/pokeapi.test.ts
-import { test } from 'api-sentinel/dsl';
+import { test } from 'reqprobe/dsl';
 
 test('GET /pokemon/pikachu — returns correct name', async (ctx) => {
   const res = await ctx.request({ url: '/pokemon/pikachu', method: 'GET' });
@@ -138,7 +138,7 @@ test('GET /pokemon/1 — returns bulbasaur', async (ctx) => {
 ```
 
 ```ts
-// api-sentinel.config.ts
+// reqprobe.config.ts
 const config = {
   baseUrl: 'https://pokeapi.co/api/v2',
   timeout: 10_000,
@@ -147,7 +147,7 @@ export default config;
 ```
 
 ```bash
-npx api-sentinel run "tests/pokeapi.test.ts"
+npx reqprobe run "tests/pokeapi.test.ts"
 ```
 
 ---
@@ -155,8 +155,8 @@ npx api-sentinel run "tests/pokeapi.test.ts"
 ## Configuration
 
 ```ts
-// api-sentinel.config.ts
-import type { Config } from 'api-sentinel';
+// reqprobe.config.ts
+import type { Config } from 'reqprobe';
 
 const config: Config = {
   baseUrl: 'https://api.yourservice.com',
@@ -169,7 +169,7 @@ const config: Config = {
     strict: false,           // true = fail on missing schemas
   },
   reporters: {
-    outDir: './api-sentinel-reports',
+    outDir: './reqprobe-reports',
     json: true,
     html: true,
   },
@@ -186,7 +186,7 @@ export default config;
 
 ```ts
 // users.test.ts
-import { test } from 'api-sentinel/dsl';
+import { test } from 'reqprobe/dsl';
 
 test('GET /users — returns a list', async (ctx) => {
   const res = await ctx.request({ url: '/users', method: 'GET' });
@@ -209,7 +209,7 @@ test('POST /users — creates a user', async (ctx) => {
 
 ```ts
 // auth.test.ts
-import type { TestSuite } from 'api-sentinel';
+import type { TestSuite } from 'reqprobe';
 
 const suite: TestSuite = {
   name: 'Auth API',
@@ -247,12 +247,12 @@ ctx.expect(res.body).toHaveProperty('id');
 
 ## OpenAPI Contract Validation
 
-> **This feature is entirely optional.** api-sentinel works perfectly without a spec — OpenAPI validation is an additive layer you enable when you're ready.
+> **This feature is entirely optional.** reqprobe works perfectly without a spec — OpenAPI validation is an additive layer you enable when you're ready.
 
-Point api-sentinel at your OpenAPI 3.x spec and every response is automatically validated against its schema using [Ajv](https://ajv.js.org/) — no extra assertions needed in your tests.
+Point reqprobe at your OpenAPI 3.x spec and every response is automatically validated against its schema using [Ajv](https://ajv.js.org/) — no extra assertions needed in your tests.
 
 ```ts
-// api-sentinel.config.ts
+// reqprobe.config.ts
 const config: Config = {
   baseUrl: 'https://api.yourservice.com',
   openapi: {
@@ -267,18 +267,18 @@ const config: Config = {
 test('GET /products/:id — response matches schema', async (ctx) => {
   const res = await ctx.request({ url: '/products/42', method: 'GET' });
 
-  // api-sentinel automatically validates res.body against
+  // reqprobe automatically validates res.body against
   // the GET /products/{id} → 200 schema in your spec.
   // No extra assertion needed.
   ctx.expect(res).toHaveStatus(200);
 });
 ```
 
-If the response body doesn't match the schema, api-sentinel throws a detailed error:
+If the response body doesn't match the schema, reqprobe throws a detailed error:
 
 ```
   ✖ GET /products/42 — response matches schema  (67ms)
-    ├ [api-sentinel/openapi] Response body failed schema validation:
+    ├ [reqprobe/openapi] Response body failed schema validation:
     ├   • body.price: must be number
     └   • body.stock: must have required property 'stock'
 ```
@@ -294,13 +294,13 @@ If the response body doesn't match the schema, api-sentinel throws a detailed er
 
 ## Generating Reports
 
-> **This feature is entirely optional.** If no `reporters` config is set, api-sentinel simply prints results to the terminal and exits — no files are written.
+> **This feature is entirely optional.** If no `reporters` config is set, reqprobe simply prints results to the terminal and exits — no files are written.
 
 ```ts
 reporters: {
-  outDir: './api-sentinel-reports',
-  json: true,   // api-sentinel-reports/report.json
-  html: true,   // api-sentinel-reports/report.html
+  outDir: './reqprobe-reports',
+  json: true,   // reqprobe-reports/report.json
+  html: true,   // reqprobe-reports/report.html
 }
 ```
 
@@ -333,7 +333,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Run API tests
-        run: npx api-sentinel run "tests/**/*.test.ts"
+        run: npx reqprobe run "tests/**/*.test.ts"
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           BASE_URL: ${{ vars.STAGING_URL }}
@@ -341,8 +341,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: api-sentinel-report
-          path: api-sentinel-reports/
+          name: reqprobe-report
+          path: reqprobe-reports/
 ```
 
 ### GitLab CI
@@ -352,50 +352,50 @@ api-tests:
   image: node:20-alpine
   script:
     - npm ci
-    - npx api-sentinel run "tests/**/*.test.ts"
+    - npx reqprobe run "tests/**/*.test.ts"
   artifacts:
     when: always
     paths:
-      - api-sentinel-reports/
+      - reqprobe-reports/
     expire_in: 7 days
   variables:
     API_TOKEN: $API_TOKEN
 ```
 
-api-sentinel exits with code `1` when any test fails — no extra configuration needed.
+reqprobe exits with code `1` when any test fails — no extra configuration needed.
 
 ---
 
 ## Monorepo Usage
 
-api-sentinel reads config from the nearest `api-sentinel.config.ts` relative to where you run it. Each package can have its own config:
+reqprobe reads config from the nearest `reqprobe.config.ts` relative to where you run it. Each package can have its own config:
 
 ```
 apps/
   users-service/
-    api-sentinel.config.ts      # baseUrl: http://users-service
+    reqprobe.config.ts      # baseUrl: http://users-service
     tests/
       users.test.ts
   orders-service/
-    api-sentinel.config.ts      # baseUrl: http://orders-service
+    reqprobe.config.ts      # baseUrl: http://orders-service
     tests/
       orders.test.ts
 ```
 
 ```bash
 # Run tests for a specific service from monorepo root
-npx api-sentinel run "apps/users-service/tests/**/*.test.ts"
+npx reqprobe run "apps/users-service/tests/**/*.test.ts"
 
 # Or from within the package
 cd apps/users-service
-npx api-sentinel run "tests/**/*.test.ts"
+npx reqprobe run "tests/**/*.test.ts"
 ```
 
 Shared base config with per-service overrides:
 
 ```ts
-// apps/users-service/api-sentinel.config.ts
-import baseConfig from '../../api-sentinel.base.config.ts';
+// apps/users-service/reqprobe.config.ts
+import baseConfig from '../../reqprobe.base.config.ts';
 
 export default {
   ...baseConfig,
@@ -437,7 +437,7 @@ src/
 | ✅ | CI exit codes |
 | ✅ | `.env` support |
 | 🔜 | `beforeAll` / `afterAll` hooks (v0.2) |
-| 🔜 | Watch mode (`api-sentinel run --watch`) |
+| 🔜 | Watch mode (`reqprobe run --watch`) |
 | 🔜 | Scaffold from OpenAPI spec |
 | 🔜 | Parallel test execution |
 | 🔜 | Response time assertions (`toRespondWithin`) |
@@ -449,13 +449,13 @@ src/
 
 ## Contributing
 
-Contributions are welcome. api-sentinel is intentionally small — please keep PRs focused.
+Contributions are welcome. reqprobe is intentionally small — please keep PRs focused.
 
 ### Setup
 
 ```bash
-git clone https://github.com/shashi089/api-sentinel.git
-cd api-sentinel
+git clone https://github.com/shashi089/reqprobe.git
+cd reqprobe
 npm install
 npm run build
 ```
@@ -477,7 +477,7 @@ npm run build
 ### Reporting bugs
 
 Open an issue with:
-- api-sentinel version (`npx api-sentinel --version`)
+- reqprobe version (`npx reqprobe --version`)
 - Node version (`node --version`)
 - Minimal reproduction (test file + config)
 - Actual vs expected output

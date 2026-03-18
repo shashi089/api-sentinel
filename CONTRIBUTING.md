@@ -1,6 +1,6 @@
-# Contributing to api-sentinel
+# Contributing to reqprobe
 
-Thank you for your interest in contributing to **api-sentinel**! We welcome contributions from the community.
+Thank you for your interest in contributing to **reqprobe**! We welcome contributions from the community.
 
 ## Code of Conduct
 
@@ -13,7 +13,7 @@ By participating in this project, you agree to maintain a respectful and inclusi
 Before creating a bug report, please check existing issues to avoid duplicates.
 
 **When reporting bugs, include:**
-- Node.js and api-sentinel version
+- Node.js and reqprobe version
 - Operating system
 - Steps to reproduce
 - Expected vs actual behavior
@@ -51,8 +51,8 @@ We love feature suggestions! Please:
 
 ```bash
 # Clone your fork
-git clone https://github.com/shashi089/api-sentinel.git
-cd api-sentinel
+git clone https://github.com/shashi089/reqprobe.git
+cd reqprobe
 
 # Install dependencies
 npm install
@@ -75,7 +75,7 @@ npx tsx src/cli/index.ts run examples/**/*.test.ts
 ## Project Structure
 
 ```
-api-sentinel/
+reqprobe/
 ├── src/
 │   ├── cli/           # CLI commands and entry point
 │   ├── core/          # Test runner, HTTP client, assertions
@@ -131,4 +131,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-Thank you for contributing to api-sentinel! 🚀
+Thank you for contributing to reqprobe! 🚀

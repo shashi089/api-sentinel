@@ -1,4 +1,4 @@
-# api-sentinel - Architecture Overview
+# reqprobe - Architecture Overview
 
 ## Test Discovery & Dynamic Import Pattern
 
@@ -12,7 +12,7 @@ const testFiles = await glob(pattern, { absolute: true });
 ```
 
 **How it works:**
-1. User runs: `api-sentinel run examples/*.test.ts`
+1. User runs: `reqprobe run examples/*.test.ts`
 2. Glob pattern expands to match all test files
 3. Returns absolute file paths for import
 

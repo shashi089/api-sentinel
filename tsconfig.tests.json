@@ -5,10 +5,10 @@
         "noEmit": true,
         "baseUrl": ".",
         "paths": {
-            "api-sentinel": [
+            "reqprobe": [
                 "./dist/index.js"
             ],
-            "api-sentinel/*": [
+            "reqprobe/*": [
                 "./dist/*"
             ]
         }

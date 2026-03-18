@@ -3,11 +3,11 @@ import path from 'node:path';
 import { logger } from '../../utils/logger.js';
 
 export async function initHandler() {
-    const configPath = path.join(process.cwd(), 'api-sentinel.config.ts');
+    const configPath = path.join(process.cwd(), 'reqprobe.config.ts');
     const envPath = path.join(process.cwd(), '.env.example');
 
     if (fs.existsSync(configPath)) {
-        logger.warn('api-sentinel.config.ts already exists.');
+        logger.warn('reqprobe.config.ts already exists.');
         return;
     }
 
@@ -25,7 +25,7 @@ const config: Config = {
 export default config;
 `;
 
-    const envContent = `# api-sentinel Environment Configuration
+    const envContent = `# reqprobe Environment Configuration
 # Copy this file to .env and update with your values
 
 # API Configuration
@@ -60,7 +60,7 @@ test('Sample: POST request example', async ({ api }) => {
 
     try {
         fs.writeFileSync(configPath, configContent);
-        logger.success('Created api-sentinel.config.ts');
+        logger.success('Created reqprobe.config.ts');
 
         fs.writeFileSync(envPath, envContent);
         logger.success('Created .env.example');
@@ -75,11 +75,11 @@ test('Sample: POST request example', async ({ api }) => {
         fs.writeFileSync(sampleTestPath, sampleTestContent);
         logger.success('Created examples/sample.test.ts');
 
-        logger.info('\n✨ api-sentinel project initialized successfully!\n');
+        logger.info('\n✨ reqprobe project initialized successfully!\n');
         logger.info('Next steps:');
         logger.info('1. Copy .env.example to .env and update with your credentials');
-        logger.info('2. Update api-sentinel.config.ts with your API settings');
-        logger.info('3. Run your first test: api-sentinel run examples/sample.test.ts');
+        logger.info('2. Update reqprobe.config.ts with your API settings');
+        logger.info('3. Run your first test: reqprobe run examples/sample.test.ts');
     } catch (error: any) {
         logger.error('Failed to initialize project', error);
     }

@@ -1,5 +1,5 @@
 export function renderTestTemplate(method: string, apiPath: string): string {
-    return `import { test, expect } from "api-sentinel"
+    return `import { test, expect } from "reqprobe"
 
 test("${method} ${apiPath}", async ({ request }) => {
   const response = await request.${method.toLowerCase()}("${apiPath}")

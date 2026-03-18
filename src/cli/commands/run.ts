@@ -11,7 +11,7 @@ import { runReporters } from '../../reporters/index.js';
 import { FileWatcher } from '../../watcher/file-watcher.js';
 
 export async function runHandler(pattern: string = '**/*.test.ts', options: { watch?: boolean } = {}) {
-    const configPath = path.resolve(process.cwd(), 'api-sentinel.config.ts');
+    const configPath = path.resolve(process.cwd(), 'reqprobe.config.ts');
     const testsDir = path.resolve(process.cwd(), 'tests');
 
     const executeTests = async () => {

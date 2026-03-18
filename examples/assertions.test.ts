@@ -13,7 +13,7 @@ test('Assertions: toEqual should pass for deep equality', async () => {
 
 test('Assertions: toContain should check substring', async () => {
     expect('Hello World').toContain('World');
-    expect('api-sentinel framework').toContain('api-sentinel');
+    expect('reqprobe framework').toContain('reqprobe');
 });
 
 test('Assertions: toBeTruthy should validate truthy values', async () => {

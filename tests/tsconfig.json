@@ -11,7 +11,7 @@
         "noEmit": true,
         "baseUrl": "..",
         "paths": {
-            "api-sentinel": [
+            "reqprobe": [
                 "dist/index.d.ts"
             ]
         }

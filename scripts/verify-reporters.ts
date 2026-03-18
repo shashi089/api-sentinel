@@ -10,7 +10,7 @@ import { TestResult } from '../src/types/index.js';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const OUT_DIR = './api-sentinel-reports';
+const OUT_DIR = './reqprobe-reports';
 
 // ── Simulate test results ────────────────────────────────────────────────────
 
@@ -31,7 +31,7 @@ const failResults: TestResult[] = [
         name: 'should validate schema',
         passed: false,
         duration: 45,
-        error: new Error('[api-sentinel/openapi] Response body failed schema validation:\n  • (root): must have required property "id"\n  • (root): must have required property "base_experience"'),
+        error: new Error('[reqprobe/openapi] Response body failed schema validation:\n  • (root): must have required property "id"\n  • (root): must have required property "base_experience"'),
         response: {
             status: 404,
             statusText: 'Not Found',
@@ -82,7 +82,7 @@ if (fs.existsSync(jsonPath)) {
 
 if (fs.existsSync(htmlPath)) {
     const html = fs.readFileSync(htmlPath, 'utf-8');
-    check('HTML: contains api-sentinel brand', html.includes('api-sentinel'));
+    check('HTML: contains reqprobe brand', html.includes('reqprobe'));
     check('HTML: contains suite name', html.includes('PokeAPI Health Check'));
     check('HTML: contains FAILED status', html.includes('FAILED'));
     check('HTML: no external script/link tags', !html.includes('src="http') && !html.includes('href="http'));
