@@ -40,10 +40,10 @@ export async function runHandler(pattern: string = '**/*.test.ts', options: { wa
                 env: process.env,
             });
 
-            await new Promise<void>((resolve) => {
-                child.on('exit', () => resolve());
-            });
-            return;
+                const exitCode = await new Promise<number>((resolve) => {
+                    child.on('exit', (code) => resolve(code ?? 1));
+                });
+                process.exit(exitCode);
         }
     }
 
