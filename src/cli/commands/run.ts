@@ -1,5 +1,7 @@
 import { pathToFileURL } from 'node:url';
 import path from 'node:path';
+import fs from 'node:fs';
+import { spawn } from 'node:child_process';
 import glob from 'fast-glob';
 import { ConfigLoader } from '../../config/loader.js';
 import { TestRunner } from '../../runner/index.js';
@@ -13,6 +15,37 @@ import { FileWatcher } from '../../watcher/file-watcher.js';
 export async function runHandler(pattern: string = '**/*.test.ts', options: { watch?: boolean } = {}) {
     const configPath = path.resolve(process.cwd(), 'reqprobe.config.ts');
     const testsDir = path.resolve(process.cwd(), 'tests');
+
+    // When users run `npx reqprobe run ...` without a TS runtime loader,
+    // Node will throw "Unknown file extension '.ts'" when importing
+    // `reqprobe.config.ts` or `tests/**/*.test.ts`.
+    //
+    // Since reqprobe already depends on `tsx`, we can self-relaunch with
+    // `node --import tsx ...` when TS files are detected and tsx is not active.
+    const isTsxActive = (() => {
+        const idx = process.execArgv.indexOf('--import');
+        return idx !== -1 && process.execArgv[idx + 1] === 'tsx';
+    })();
+
+    if (!isTsxActive) {
+        const testFiles = await glob(pattern, { absolute: true });
+        const hasTsFiles =
+            fs.existsSync(configPath) ||
+            testFiles.some((f) => f.endsWith('.ts') || f.endsWith('.tsx'));
+
+        if (hasTsFiles) {
+            const nodeArgs = ['--import', 'tsx', process.argv[1], ...process.argv.slice(2)];
+            const child = spawn(process.execPath, nodeArgs, {
+                stdio: 'inherit',
+                env: process.env,
+            });
+
+                const exitCode = await new Promise<number>((resolve) => {
+                    child.on('exit', (code) => resolve(code ?? 1));
+                });
+                process.exit(exitCode);
+        }
+    }
 
     const executeTests = async () => {
         const loader = new ConfigLoader();
